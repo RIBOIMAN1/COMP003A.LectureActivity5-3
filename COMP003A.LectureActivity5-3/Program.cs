@@ -92,6 +92,79 @@ namespace COMP003A.LectureActivity5_3
 			/// </summary>
 			void Draw();
 		}
+		/// <summary>
+		/// Represents a circle derived from Shape and implements IDrawable
+		/// </summary>
+		class Circle : Shape, IDrawable
+		{
+			// Auto-implemented property
+			public double Radius { get; set; }
+
+			/// <summary>
+			/// Constructor for Circle.
+			/// </summary>
+			/// <param name="radius"></param>
+			public Circle(double radius)
+			{
+				Name = "Circle";
+				Radius = radius;
+			}
+
+			/// <summary>
+			/// Calculates the area of the circle.
+			/// </summary>
+			public override double CalculateArea()
+			{
+				// returns the area of the circle
+				return Math.PI * Radius * Radius;
+			}
+
+			/// <summary>
+			/// Implements Draw() method for a circle.
+			/// </summary>
+			public void Draw()
+			{
+				Console.WriteLine("Drawing a circle.");
+			}
+		}
+		/// <summary>
+		/// Represents a rectangle derived from Shape and implements IDrawable.
+		/// </summary>
+		class Rectangle : Shape, IDrawable
+		{
+			// Auto-implemented properties
+			public double Width { get; set; }
+			public double Height { get; set; }
+
+			/// <summary>
+			/// Constructor for Rectangle.
+			/// </summary>
+			/// <param name="width"></param>
+			/// <param name="height"></param>
+			public Rectangle(double width, double height)
+			{
+				Name = "Rectangle";
+				Width = width;
+				Height = height;
+			}
+
+			/// <summary>
+			/// Calculates the area of the rectangle.
+			/// </summary>
+			public override double CalculateArea()
+			{
+				// returns the area of the rectangle
+				return Width * Height;
+			}
+
+			/// <summary>
+			/// Implements Draw() method for a rectangle.
+			/// </summary>
+			public void Draw()
+			{
+				Console.WriteLine("Drawing a rectangle.");
+			}
+		}
 	}
 	internal class Program
     {
