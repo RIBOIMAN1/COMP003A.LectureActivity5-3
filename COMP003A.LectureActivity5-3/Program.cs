@@ -26,10 +26,21 @@ namespace COMP003A.LectureActivity5_3
 			Console.WriteLine($"Shape: {Name}");
 		}
 	}
+
 	/// <summary>
-	/// Represents a circle derived from Shape.
+	/// Defines a contract for drawable objects.
 	/// </summary>
-	class Circle : Shape
+	interface IDrawable
+	{
+		/// <summary>
+		/// Draws the object.
+		/// </summary>
+		void Draw();
+	}
+	/// <summary>
+	/// Represents a circle derived from Shape and implements IDrawable
+	/// </summary>
+	class Circle : Shape, IDrawable
 	{
 		// Auto-implemented property
 		public double Radius { get; set; }
@@ -52,11 +63,19 @@ namespace COMP003A.LectureActivity5_3
 			// returns the area of the circle
 			return Math.PI * Radius * Radius;
 		}
+
+		/// <summary>
+		/// Implements Draw() method for a circle.
+		/// </summary>
+		public void Draw()
+		{
+			Console.WriteLine("Drawing a circle.");
+		}
 	}
 	/// <summary>
-	/// Represents a rectangle derived from Shape.
+	/// Represents a rectangle derived from Shape and implements IDrawable.
 	/// </summary>
-	class Rectangle : Shape
+	class Rectangle : Shape, IDrawable
 	{
 		// Auto-implemented properties
 		public double Width { get; set; }
@@ -82,95 +101,32 @@ namespace COMP003A.LectureActivity5_3
 			// returns the area of the rectangle
 			return Width * Height;
 		}
+
 		/// <summary>
-		/// Defines a contract for drawable objects.
+		/// Implements Draw() method for a rectangle.
 		/// </summary>
-		interface IDrawable
+		public void Draw()
 		{
-			/// <summary>
-			/// Draws the object.
-			/// </summary>
-			void Draw();
-		}
-		/// <summary>
-		/// Represents a circle derived from Shape and implements IDrawable
-		/// </summary>
-		class Circle : Shape, IDrawable
-		{
-			// Auto-implemented property
-			public double Radius { get; set; }
-
-			/// <summary>
-			/// Constructor for Circle.
-			/// </summary>
-			/// <param name="radius"></param>
-			public Circle(double radius)
-			{
-				Name = "Circle";
-				Radius = radius;
-			}
-
-			/// <summary>
-			/// Calculates the area of the circle.
-			/// </summary>
-			public override double CalculateArea()
-			{
-				// returns the area of the circle
-				return Math.PI * Radius * Radius;
-			}
-
-			/// <summary>
-			/// Implements Draw() method for a circle.
-			/// </summary>
-			public void Draw()
-			{
-				Console.WriteLine("Drawing a circle.");
-			}
-		}
-		/// <summary>
-		/// Represents a rectangle derived from Shape and implements IDrawable.
-		/// </summary>
-		class Rectangle : Shape, IDrawable
-		{
-			// Auto-implemented properties
-			public double Width { get; set; }
-			public double Height { get; set; }
-
-			/// <summary>
-			/// Constructor for Rectangle.
-			/// </summary>
-			/// <param name="width"></param>
-			/// <param name="height"></param>
-			public Rectangle(double width, double height)
-			{
-				Name = "Rectangle";
-				Width = width;
-				Height = height;
-			}
-
-			/// <summary>
-			/// Calculates the area of the rectangle.
-			/// </summary>
-			public override double CalculateArea()
-			{
-				// returns the area of the rectangle
-				return Width * Height;
-			}
-
-			/// <summary>
-			/// Implements Draw() method for a rectangle.
-			/// </summary>
-			public void Draw()
-			{
-				Console.WriteLine("Drawing a rectangle.");
-			}
+			Console.WriteLine("Drawing a rectangle.");
 		}
 	}
 	internal class Program
-    {
-        static void Main(string[] args)
-        {
-            Console.WriteLine("Hello, World!");
-        }
-    }
+	{
+		static void Main(string[] args)
+		{
+			// Create a circle and a rectangle
+			Shape myCircle = new Circle(5);
+			Shape myRectangle = new Rectangle(4, 6);
+
+			// Display information about the circle
+			myCircle.DisplayInfo();
+			Console.WriteLine($"Area: {myCircle.CalculateArea()}");
+			((IDrawable)myCircle).Draw();
+
+			// Display information about the rectangle
+			myRectangle.DisplayInfo();
+			Console.WriteLine($"Area: {myRectangle.CalculateArea()}");
+			((IDrawable)myRectangle).Draw();
+		}
+	}
 }
