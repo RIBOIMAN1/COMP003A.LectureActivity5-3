@@ -82,6 +82,16 @@ namespace COMP003A.LectureActivity5_3
 			// returns the area of the rectangle
 			return Width * Height;
 		}
+		/// <summary>
+		/// Defines a contract for drawable objects.
+		/// </summary>
+		interface IDrawable
+		{
+			/// <summary>
+			/// Draws the object.
+			/// </summary>
+			void Draw();
+		}
 	}
 	internal class Program
     {
